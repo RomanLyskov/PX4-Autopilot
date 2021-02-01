@@ -143,7 +143,7 @@ static const uint8_t status_rtn[24] = { 255, 255, 255, 5, 2, 4, 1, 7, 3, 0,
 VL53L1X::VL53L1X(I2CSPIBusOption bus_option, const int bus, const uint8_t rotation, int bus_frequency, int address) :
 	I2C(DRV_DIST_DEVTYPE_VL53L1X, MODULE_NAME, bus, address, bus_frequency),
 	I2CSPIDriver(MODULE_NAME, px4::device_bus_to_wq(get_device_id()), bus_option, bus),
-	_px4_rangefinder(0 /* device id not yet used */, rotation)
+	_px4_rangefinder(0 /* device id not yet used */, ORB_PRIO_DEFAULT, rotation)
 {
 	// VL53L1X typical range 0-4 meters with 25 degree field of view
 	_px4_rangefinder.set_min_distance(VL53L1X_MIN_DISTANCE);
