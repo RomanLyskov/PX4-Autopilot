@@ -44,7 +44,7 @@ px4_add_board(
 		lights/rgbled_ncp5623c
 		magnetometer # all available magnetometer drivers
 		mkblctrl
-		#optical_flow # all available optical flow drivers
+		optical_flow/px4flow # all available optical flow drivers
 		optical_flow/thoneflow
 		#osd
 		pca9685
