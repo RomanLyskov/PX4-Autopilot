@@ -38,10 +38,10 @@ px4_add_board(
 		imu/invensense/icm20948
 		imu/invensense/mpu6000
 		imu/invensense/mpu9250
-		irlock
-		lights/blinkm
-		lights/rgbled
-		lights/rgbled_ncp5623c
+		#irlock
+		#lights/blinkm
+		#lights/rgbled
+		#lights/rgbled_ncp5623c
 		magnetometer # all available magnetometer drivers
 		mkblctrl
 		#optical_flow # all available optical flow drivers
@@ -111,7 +111,11 @@ px4_add_board(
 		reboot
 		reflect
 		sd_bench
+<<<<<<< Updated upstream
 #		tests # tests and test runner
+=======
+		#tests # tests and test runner
+>>>>>>> Stashed changes
 		top
 		topic_listener
 		tune_control
