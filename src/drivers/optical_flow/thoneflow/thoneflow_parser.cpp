@@ -41,7 +41,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define THONEFLOW_DEBUG
+//#define THONEFLOW_DEBUG
 
 #ifdef THONEFLOW_DEBUG
 #include <stdio.h>
@@ -133,8 +133,8 @@ bool thoneflow_parse(char c, char *parserbuf, unsigned *parserbuf_index, enum TH
 				// Checksum valid, populate sensor report
 				int16_t delta_x = uint16_t(parserbuf[1]) << 8 | parserbuf[0];
 				int16_t delta_y = uint16_t(parserbuf[3]) << 8 | parserbuf[2];
-				flow->pixel_flow_x_integral = static_cast<float>(delta_x) * (1.76f / 500.0f);
-				flow->pixel_flow_y_integral = static_cast<float>(delta_y) * (1.76f / 500.0f);
+				flow->pixel_flow_x_integral = static_cast<float>(delta_x) * (3.52e-3f);
+				flow->pixel_flow_y_integral = static_cast<float>(delta_y) * (3.52e-3f);
 				*state = THONEFLOW_PARSE_STATE7_CHECKSUM;
 
 			} else {

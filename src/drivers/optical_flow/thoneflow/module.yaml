@@ -1,13 +1,6 @@
-__max_num_config_instances: &max_num_config_instances 1
-
 module_name: ThoneFlow-3901U optical flow sensor
 serial_config:
-    - command: |
-        thoneflow start -d ${SERIAL_DEV}
+    - command: thoneflow start -d ${SERIAL_DEV}
       port_config_param:
         name: SENS_TFLOW_CFG
         group: Sensors
-        # Test ThoneFlow instance:
-        # 0: Telem2 Port
-        default: [TEL2]
-      num_instances:  *max_num_config_instances

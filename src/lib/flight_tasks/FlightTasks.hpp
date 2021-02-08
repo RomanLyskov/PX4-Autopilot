@@ -150,24 +150,14 @@ public:
 	/**
 	 * Sets an external yaw handler. The active flight task can use the yaw handler to implement a different yaw control strategy.
 	 */
-	void setYawHandler(WeatherVane *ext_yaw_handler)
-	{
-		if (isAnyTaskActive()) {
-			_current_task.task->setYawHandler(ext_yaw_handler);
-		}
-	}
+	void setYawHandler(WeatherVane *ext_yaw_handler) {_current_task.task->setYawHandler(ext_yaw_handler);}
 
 	/**
 	 *   This method will re-activate current task.
 	 */
 	void reActivate();
 
-	void updateVelocityControllerIO(const matrix::Vector3f &vel_sp, const matrix::Vector3f &thrust_sp)
-	{
-		if (isAnyTaskActive()) {
-			_current_task.task->updateVelocityControllerIO(vel_sp, thrust_sp);
-		}
-	}
+	void updateVelocityControllerIO(const matrix::Vector3f &vel_sp, const matrix::Vector3f &thrust_sp) {_current_task.task->updateVelocityControllerIO(vel_sp, thrust_sp); }
 
 private:
 
@@ -206,7 +196,7 @@ private:
 
 	uORB::Subscription _sub_vehicle_command{ORB_ID(vehicle_command)}; /**< topic handle on which commands are received */
 
-	uORB::PublicationQueued<vehicle_command_ack_s>	_pub_vehicle_command_ack{ORB_ID(vehicle_command_ack)};
+	uORB::Publication<vehicle_command_ack_s>	_pub_vehicle_command_ack{ORB_ID(vehicle_command_ack)};
 
 	int _initTask(FlightTaskIndex task_index);
 };

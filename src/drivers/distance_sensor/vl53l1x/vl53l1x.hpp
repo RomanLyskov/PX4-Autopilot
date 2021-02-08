@@ -48,8 +48,6 @@
 #include <drivers/drv_hrt.h>
 #include <lib/perf/perf_counter.h>
 #include <lib/drivers/rangefinder/PX4Rangefinder.hpp>
-#include <uORB/topics/distance_sensor.h>
-
 
 /* ST */
 #define SOFT_RESET                                          0x0000
@@ -96,9 +94,6 @@
 
 /* Configuration Constants */
 #define VL53L1X_BASEADDR                                0x29
-#define VL53L1X_FIELD_OF_VIEW				0.436f // 25 deg cone angle.
-#define VL53L1X_MAX_DISTANCE				4.f
-#define VL53L1X_MIN_DISTANCE				0.f
 
 class VL53L1X : public device::I2C, public I2CSPIDriver<VL53L1X>
 {

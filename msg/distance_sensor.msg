@@ -14,7 +14,7 @@ uint8 MAV_DISTANCE_SENSOR_ULTRASOUND = 1
 uint8 MAV_DISTANCE_SENSOR_INFRARED = 2
 uint8 MAV_DISTANCE_SENSOR_RADAR = 3
 
-uint8 id			# Onboard ID of the sensor
+uint32 device_id		# unique device ID for the sensor that does not change between power cycles
 
 float32 h_fov # Sensor horizontal field of view (rad)
 float32 v_fov # Sensor vertical field of view (rad)
