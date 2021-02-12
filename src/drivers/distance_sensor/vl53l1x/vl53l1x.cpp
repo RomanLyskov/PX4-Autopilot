@@ -155,7 +155,7 @@ VL53L1X::VL53L1X(I2CSPIBusOption bus_option, const int bus, const uint8_t rotati
 	_px4_rangefinder(get_device_id(), rotation)
 {
 	// Set distance mode (1 for ~2m ranging, 2 for ~4m ranging
-	distance_mode = VL53L1X_SHORT_RANGE;
+	distance_mode = VL53L1X_LONG_RANGE;
 
 	// VL53L1X typical range 0-4 meters with 27 degree field of view
 	_px4_rangefinder.set_min_distance(0.f);
