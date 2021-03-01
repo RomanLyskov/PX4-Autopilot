@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   Copyright (c) 2019 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2019-2021 PX4 Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -32,11 +32,16 @@
  ****************************************************************************/
 
 /**
- * VL53L1X Distance Sensor
+ * VL53L0X/VL53L1X/VL53L3CX laser rangefinder (i2c)
  *
  * @reboot_required true
- *
- * @boolean
+ * @min 0
+ * @max 4
  * @group Sensors
+ * @value 0 Disabled
+ * @value 1 VL53L0X
+ * @value 2 VL53L1X_2m
+ * @value 3 VL53L1X_4m
+ * @value 4 VL53L3CX
  */
 PARAM_DEFINE_INT32(SENS_EN_VL53L1X, 0);

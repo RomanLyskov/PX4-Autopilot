@@ -41,10 +41,12 @@
 
 #include <px4_log.h>
 #include <px4_platform_common/px4_config.h>
+#include <px4_platform_common/defines.h>
 #include <px4_platform_common/getopt.h>
 #include <px4_platform_common/i2c_spi_buses.h>
 #include <px4_platform_common/module.h>
 #include <drivers/device/i2c.h>
+#include <lib/parameters/param.h>
 #include <drivers/drv_hrt.h>
 #include <lib/perf/perf_counter.h>
 #include <lib/drivers/rangefinder/PX4Rangefinder.hpp>
