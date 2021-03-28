@@ -154,6 +154,13 @@ VL53L1X::VL53L1X(I2CSPIBusOption bus_option, const int bus, const uint8_t rotati
 	I2CSPIDriver(MODULE_NAME, px4::device_bus_to_wq(get_device_id()), bus_option, bus),
 	_px4_rangefinder(get_device_id(), rotation)
 {
+<<<<<<< HEAD
+=======
+	// Set distance mode (1 for ~2m ranging, 2 for ~4m ranging
+	distance_mode = VL53L1X_SHORT_RANGE;
+
+	// VL53L1X typical range 0-4 meters with 27 degree field of view
+>>>>>>> parent of d0dec1ba88... Fixes-2
 	_px4_rangefinder.set_min_distance(0.f);
 	_px4_rangefinder.set_max_distance(2.f);
 	_px4_rangefinder.set_fov(math::radians(27.f));
