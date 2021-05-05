@@ -36,7 +36,7 @@
 
 #include "vl53l1x.hpp"
 
-#define VL53L1X_SAMPLE_RATE                                20  // ms
+#define VL53L1X_SAMPLE_RATE                                40  // ms
 
 /* ST */
 const uint8_t VL51L1X_DEFAULT_CONFIGURATION[] = {
@@ -145,9 +145,9 @@ VL53L1X::VL53L1X(I2CSPIBusOption bus_option, const int bus, const uint8_t rotati
 	I2CSPIDriver(MODULE_NAME, px4::device_bus_to_wq(get_device_id()), bus_option, bus),
 	_px4_rangefinder(get_device_id(), rotation)
 {
-	// VL53L1X typical range 0-2 meters with 25 degree field of view
+	// VL53L1X typical range 0-4 meters with 25 degree field of view
 	_px4_rangefinder.set_min_distance(0.f);
-	_px4_rangefinder.set_max_distance(2.f);
+	_px4_rangefinder.set_max_distance(4.f);
 	_px4_rangefinder.set_fov(math::radians(25.f));
 
 	// Allow 3 retries as the device typically misses the first measure attempts.
