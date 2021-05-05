@@ -154,15 +154,19 @@ VL53L1X::VL53L1X(I2CSPIBusOption bus_option, const int bus, const uint8_t rotati
 	I2CSPIDriver(MODULE_NAME, px4::device_bus_to_wq(get_device_id()), bus_option, bus),
 	_px4_rangefinder(get_device_id(), rotation)
 {
-<<<<<<< HEAD
-=======
 	// Set distance mode (1 for ~2m ranging, 2 for ~4m ranging
-	distance_mode = VL53L1X_SHORT_RANGE;
+	distance_mode = VL53L1X_LONG_RANGE;
 
 	// VL53L1X typical range 0-4 meters with 27 degree field of view
->>>>>>> parent of d0dec1ba88... Fixes-2
 	_px4_rangefinder.set_min_distance(0.f);
-	_px4_rangefinder.set_max_distance(2.f);
+
+	if (distance_mode == VL53L1X_SHORT_RANGE) {
+		_px4_rangefinder.set_max_distance(2.f);
+
+	} else {
+		_px4_rangefinder.set_max_distance(4.f);
+	}
+
 	_px4_rangefinder.set_fov(math::radians(27.f));
 
 	// Allow 3 retries as the device typically misses the first measure attempts.
@@ -271,46 +275,12 @@ void VL53L1X::start()
 int VL53L1X::init()
 {
 	int ret = PX4_OK;
-	int32_t hw_model = 0;
-	param_get(param_find("SENS_EN_VL53L1X"), &hw_model);
-
-	switch (hw_model) {
-	case 0:
-		PX4_WARN("disabled.");
-		return ret;
-
-	case 1:  /* VL53L0X (2m **Hz) */
-		_px4_rangefinder.set_min_distance(0.01f);
-		_px4_rangefinder.set_max_distance(2.0f);
-		break;
-
-	case 2:  /* VL53L1X (2m **Hz) */
-		_px4_rangefinder.set_min_distance(0.01f);
-		_px4_rangefinder.set_max_distance(4.0f);
-		break;
-
-	case 3:  /* VL53L1X (4m **Hz) */
-		_px4_rangefinder.set_min_distance(0.01f);
-		_px4_rangefinder.set_max_distance(4.0f);
-		distance_mode = VL53L1X_LONG_RANGE;
-		break;
-
-	case 4:  /* VL53L3CX (3m **Hz) */
-		_px4_rangefinder.set_min_distance(0.01f);
-		_px4_rangefinder.set_max_distance(3.0f);
-		break;
-
-	default:
-		PX4_ERR("invalid HW model %d.", hw_model);
-		return ret;
-	}
 	ret = device::I2C::init();
 
 	if (ret != PX4_OK) {
 		perf_count(_comms_errors);
 		return PX4_ERROR;
 	}
-
 
 	// Spad width (x) & height (y)
 	uint8_t x = 4;
